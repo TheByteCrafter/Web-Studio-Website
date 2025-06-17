@@ -1,19 +1,572 @@
-<!doctype html>
-<html>
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width" />
-		<title>My static Space</title>
-		<link rel="stylesheet" href="style.css" />
-	</head>
-	<body>
-		<div class="card">
-			<h1>Welcome to your static Space!</h1>
-			<p>You can modify this app directly by editing <i>index.html</i> in the Files and versions tab.</p>
-			<p>
-				Also don't forget to check the
-				<a href="https://huggingface.co/docs/hub/spaces" target="_blank">Spaces documentation</a>.
-			</p>
-		</div>
-	</body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Studio IDE - Ultimate Web Development Tool</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #0f172a;
+            color: #e2e8f0;
+        }
+        
+        .gradient-text {
+            background: linear-gradient(90deg, #ec4899, #8b5cf6);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: gradient 3s ease infinite;
+            background-size: 200% 200%;
+        }
+        
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .floating {
+            animation: floating 6s ease-in-out infinite;
+        }
+        
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .pulse {
+            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 25px -5px rgba(236, 72, 153, 0.1), 0 10px 10px -5px rgba(236, 72, 153, 0.04);
+        }
+        
+        .feature-card {
+            transition: all 0.3s ease;
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+    <!-- Navigation -->
+    <nav class="bg-gray-900/50 backdrop-blur-md sticky top-0 z-50 border-b border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0">
+                        <span class="text-2xl font-bold gradient-text">Web Studio IDE</span>
+                    </div>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-4">
+                        <a href="#features" class="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-800 transition">Features</a>
+                        <a href="#how-it-works" class="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-800 transition">How It Works</a>
+                        <a href="#pricing" class="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-800 transition">Pricing</a>
+                        <a href="#testimonials" class="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-800 transition">Testimonials</a>
+                    </div>
+                </div>
+                <div class="hidden md:block">
+                    <a href="#download" class="ml-8 inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 shadow-lg transition">
+                        Download Now
+                    </a>
+                </div>
+                <div class="-mr-2 flex md:hidden">
+                    <button type="button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none" aria-controls="mobile-menu" aria-expanded="false" id="mobile-menu-button">
+                        <span class="sr-only">Open main menu</span>
+                        <svg class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile menu -->
+        <div class="md:hidden hidden" id="mobile-menu">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#features" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700">Features</a>
+                <a href="#how-it-works" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700">How It Works</a>
+                <a href="#pricing" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700">Pricing</a>
+                <a href="#testimonials" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700">Testimonials</a>
+                <a href="#download" class="block px-3 py-2 rounded-md text-base font-medium text-white bg-gradient-to-r from-pink-500 to-purple-600">Download Now</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="relative overflow-hidden">
+        <div class="max-w-7xl mx-auto">
+            <div class="relative z-10 pb-8 sm:pb-16 md:pb-20 lg:max-w-2xl lg:w-full lg:pb-28 xl:pb-32">
+                <main class="mt-10 mx-auto max-w-7xl px-4 sm:mt-12 sm:px-6 lg:mt-16 lg:px-8 xl:mt-20">
+                    <div class="sm:text-center lg:text-left">
+                        <h1 class="text-4xl tracking-tight font-extrabold sm:text-5xl md:text-6xl">
+                            <span class="block">The Ultimate</span>
+                            <span class="block gradient-text">Web Development IDE</span>
+                        </h1>
+                        <p class="mt-3 text-base text-gray-400 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0">
+                            Simplify your workflow with our all-in-one solution for frontend, backend, and seamless API integrations. Built for developers, by developers.
+                        </p>
+                        <div class="mt-5 sm:mt-8 sm:flex sm:justify-center lg:justify-start">
+                            <div class="rounded-md shadow">
+                                <a href="#download" class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 md:py-4 md:text-lg md:px-10 transition">
+                                    Get Started
+                                </a>
+                            </div>
+                            <div class="mt-3 sm:mt-0 sm:ml-3">
+                                <a href="#features" class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-pink-400 bg-gray-800 hover:bg-gray-700 md:py-4 md:text-lg md:px-10 transition">
+                                    Learn More
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+            </div>
+        </div>
+        <div class="lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2">
+            <div class="floating h-56 w-full sm:h-72 md:h-96 lg:w-full lg:h-full">
+                <img class="w-full h-full object-contain" src="https://cdn.dribbble.com/users/1299339/screenshots/15264199/media/0d7b0a0d1c5d5c2c0e8e4b0e4b0e4b0e.png" alt="Web Studio IDE Screenshot">
+            </div>
+        </div>
+    </div>
+
+    <!-- Features Section -->
+    <section id="features" class="py-12 bg-gray-900/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="lg:text-center">
+                <h2 class="text-base text-pink-400 font-semibold tracking-wide uppercase">Features</h2>
+                <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-white sm:text-4xl">
+                    Everything you need in one place
+                </p>
+                <p class="mt-4 max-w-2xl text-xl text-gray-400 lg:mx-auto">
+                    Our IDE comes packed with powerful features to supercharge your development workflow.
+                </p>
+            </div>
+
+            <div class="mt-10">
+                <div class="space-y-10 md:space-y-0 md:grid md:grid-cols-2 md:gap-x-8 md:gap-y-10">
+                    <!-- Feature 1 -->
+                    <div class="feature-card relative bg-gray-800 p-6 rounded-lg">
+                        <div class="absolute -top-6 left-6 h-12 w-12 rounded-full bg-gradient-to-r from-pink-500 to-purple-600 flex items-center justify-center">
+                            <i class="fas fa-code text-white text-xl"></i>
+                        </div>
+                        <h3 class="mt-8 text-lg font-medium text-white">Intelligent Code Editor</h3>
+                        <p class="mt-2 text-base text-gray-400">
+                            Smart autocomplete, syntax highlighting, and real-time error detection for HTML, CSS, JavaScript, and popular frameworks.
+                        </p>
+                    </div>
+
+                    <!-- Feature 2 -->
+                    <div class="feature-card relative bg-gray-800 p-6 rounded-lg">
+                        <div class="absolute -top-6 left-6 h-12 w-12 rounded-full bg-gradient-to-r from-pink-500 to-purple-600 flex items-center justify-center">
+                            <i class="fas fa-plug text-white text-xl"></i>
+                        </div>
+                        <h3 class="mt-8 text-lg font-medium text-white">Seamless API Integration</h3>
+                        <p class="mt-2 text-base text-gray-400">
+                            Built-in tools for connecting to REST, GraphQL, and WebSocket APIs with automatic documentation and testing.
+                        </p>
+                    </div>
+
+                    <!-- Feature 3 -->
+                    <div class="feature-card relative bg-gray-800 p-6 rounded-lg">
+                        <div class="absolute -top-6 left-6 h-12 w-12 rounded-full bg-gradient-to-r from-pink-500 to-purple-600 flex items-center justify-center">
+                            <i class="fas fa-server text-white text-xl"></i>
+                        </div>
+                        <h3 class="mt-8 text-lg font-medium text-white">Backend Development</h3>
+                        <p class="mt-2 text-base text-gray-400">
+                            Full support for Node.js, Python, PHP and more with database management and server configuration tools.
+                        </p>
+                    </div>
+
+                    <!-- Feature 4 -->
+                    <div class="feature-card relative bg-gray-800 p-6 rounded-lg">
+                        <div class="absolute -top-6 left-6 h-12 w-12 rounded-full bg-gradient-to-r from-pink-500 to-purple-600 flex items-center justify-center">
+                            <i class="fas fa-magic text-white text-xl"></i>
+                        </div>
+                        <h3 class="mt-8 text-lg font-medium text-white">Visual Design Tools</h3>
+                        <p class="mt-2 text-base text-gray-400">
+                            Drag-and-drop UI builder with CSS grid and flexbox tools to speed up your frontend development.
+                        </p>
+                    </div>
+
+                    <!-- Feature 5 -->
+                    <div class="feature-card relative bg-gray-800 p-6 rounded-lg">
+                        <div class="absolute -top-6 left-6 h-12 w-12 rounded-full bg-gradient-to-r from-pink-500 to-purple-600 flex items-center justify-center">
+                            <i class="fas fa-terminal text-white text-xl"></i>
+                        </div>
+                        <h3 class="mt-8 text-lg font-medium text-white">Integrated Terminal</h3>
+                        <p class="mt-2 text-base text-gray-400">
+                            Powerful terminal with Git integration, package managers, and deployment tools built right in.
+                        </p>
+                    </div>
+
+                    <!-- Feature 6 -->
+                    <div class="feature-card relative bg-gray-800 p-6 rounded-lg">
+                        <div class="absolute -top-6 left-6 h-12 w-12 rounded-full bg-gradient-to-r from-pink-500 to-purple-600 flex items-center justify-center">
+                            <i class="fas fa-rocket text-white text-xl"></i>
+                        </div>
+                        <h3 class="mt-8 text-lg font-medium text-white">One-Click Deployment</h3>
+                        <p class="mt-2 text-base text-gray-400">
+                            Deploy to popular platforms like Vercel, Netlify, AWS, and more with just a single click.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section id="how-it-works" class="py-12 bg-gray-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="lg:text-center">
+                <h2 class="text-base text-pink-400 font-semibold tracking-wide uppercase">Workflow</h2>
+                <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-white sm:text-4xl">
+                    How Web Studio IDE Works
+                </p>
+                <p class="mt-4 max-w-2xl text-xl text-gray-400 lg:mx-auto">
+                    Streamline your development process with our intuitive workflow.
+                </p>
+            </div>
+
+            <div class="mt-10">
+                <div class="relative">
+                    <div class="absolute left-1/2 -ml-px h-full w-0.5 bg-gradient-to-b from-pink-500 to-purple-600" aria-hidden="true"></div>
+                    
+                    <div class="relative mb-8 flex items-start">
+                        <div class="flex-shrink-0 z-10">
+                            <span class="h-10 w-10 rounded-full bg-gradient-to-r from-pink-500 to-purple-600 flex items-center justify-center">
+                                <span class="text-white font-bold">1</span>
+                            </span>
+                        </div>
+                        <div class="ml-4">
+                            <h3 class="text-lg font-medium text-white">Create a New Project</h3>
+                            <p class="mt-2 text-base text-gray-400">
+                                Start from scratch or choose from our templates for popular frameworks like React, Vue, Angular, or backend services.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="relative mb-8 flex items-start">
+                        <div class="flex-shrink-0 z-10">
+                            <span class="h-10 w-10 rounded-full bg-gradient-to-r from-pink-500 to-purple-600 flex items-center justify-center">
+                                <span class="text-white font-bold">2</span>
+                            </span>
+                        </div>
+                        <div class="ml-4">
+                            <h3 class="text-lg font-medium text-white">Develop with Powerful Tools</h3>
+                            <p class="mt-2 text-base text-gray-400">
+                                Use our intelligent code editor, visual design tools, and API integration features to build your application.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="relative mb-8 flex items-start">
+                        <div class="flex-shrink-0 z-10">
+                            <span class="h-10 w-10 rounded-full bg-gradient-to-r from-pink-500 to-purple-600 flex items-center justify-center">
+                                <span class="text-white font-bold">3</span>
+                            </span>
+                        </div>
+                        <div class="ml-4">
+                            <h3 class="text-lg font-medium text-white">Test and Debug</h3>
+                            <p class="mt-2 text-base text-gray-400">
+                                Run tests, debug with our integrated tools, and preview your application in real-time.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="relative flex items-start">
+                        <div class="flex-shrink-0 z-10">
+                            <span class="h-10 w-10 rounded-full bg-gradient-to-r from-pink-500 to-purple-600 flex items-center justify-center">
+                                <span class="text-white font-bold">4</span>
+                            </span>
+                        </div>
+                        <div class="ml-4">
+                            <h3 class="text-lg font-medium text-white">Deploy with One Click</h3>
+                            <p class="mt-2 text-base text-gray-400">
+                                Deploy your finished application to your preferred platform with our simple deployment system.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="py-12 bg-gray-900/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="lg:text-center">
+                <h2 class="text-base text-pink-400 font-semibold tracking-wide uppercase">Pricing</h2>
+                <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-white sm:text-4xl">
+                    Simple, transparent pricing
+                </p>
+                <p class="mt-4 max-w-2xl text-xl text-gray-400 lg:mx-auto">
+                    Choose the plan that fits your needs. No hidden fees.
+                </p>
+            </div>
+
+            <div class="mt-10 space-y-8 lg:space-y-0 lg:grid lg:grid-cols-3 lg:gap-x-8">
+                <!-- Free Tier -->
+                <div class="relative bg-gray-800 p-8 rounded-lg border border-gray-700">
+                    <div class="absolute top-0 right-0 -mt-4 -mr-4 bg-gradient-to-r from-pink-500 to-purple-600 text-white text-xs font-bold px-3 py-1 rounded-full">
+                        FREE
+                    </div>
+                    <h3 class="text-lg font-medium text-white">Starter</h3>
+                    <p class="mt-4 text-gray-400">Perfect for hobbyists and small projects</p>
+                    <div class="mt-6">
+                        <span class="text-4xl font-bold text-white">$0</span>
+                        <span class="text-base font-medium text-gray-400">/month</span>
+                    </div>
+                    <ul class="mt-6 space-y-4">
+                        <li class="flex items-start">
+                            <div class="flex-shrink-0 text-pink-400">
+                                <i class="fas fa-check"></i>
+                            </div>
+                            <p class="ml-3 text-base text-gray-400">Basic code editor</p>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="flex-shrink-0 text-pink-400">
+                                <i class="fas fa-check"></i>
+                            </div>
+                            <p class="ml-3 text-base text-gray-400">HTML/CSS/JavaScript support</p>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="flex-shrink-0 text-pink-400">
+                                <i class="fas fa-check"></i>
+                            </div>
+                            <p class="ml-3 text-base text-gray-400">Community support</p>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="flex-shrink-0 text-gray-500">
+                                <i class="fas fa-times"></i>
+                            </div>
+                            <p class="ml-3 text-base text-gray-500">API integration tools</p>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="flex-shrink-0 text-gray-500">
+                                <i class="fas fa-times"></i>
+                            </div>
+                            <p class="ml-3 text-base text-gray-500">Backend development</p>
+                        </li>
+                    </ul>
+                    <div class="mt-8">
+                        <a href="#download" class="w-full flex items-center justify-center px-4 py-3 border border-transparent text-base font-medium rounded-md text-white bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 transition">
+                            Get Started
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Pro Tier -->
+                <div class="relative bg-gray-800 p-8 rounded-lg border-2 border-pink-500 transform scale-105 z-10 shadow-lg">
+                    <div class="absolute top-0 right-0 -mt-4 -mr-4 bg-gradient-to-r from-pink-500 to-purple-600 text-white text-xs font-bold px-3 py-1 rounded-full">
+                        POPULAR
+                    </div>
+                    <h3 class="text-lg font-medium text-white">Professional</h3>
+                    <p class="mt-4 text-gray-400">For professional developers and small teams</p>
+                    <div class="mt-6">
+                        <span class="text-4xl font-bold text-white">$15</span>
+                        <span class="text-base font-medium text-gray-400">/month</span>
+                    </div>
+                    <ul class="mt-6 space-y-4">
+                        <li class="flex items-start">
+                            <div class="flex-shrink-0 text-pink-400">
+                                <i class="fas fa-check"></i>
+                            </div>
+                            <p class="ml-3 text-base text-gray-400">Everything in Starter</p>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="flex-shrink-0 text-pink-400">
+                                <i class="fas fa-check"></i>
+                            </div>
+                            <p class="ml-3 text-base text-gray-400">Framework support (React, Vue, etc.)</p>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="flex-shrink-0 text-pink-400">
+                                <i class="fas fa-check"></i>
+                            </div>
+                            <p class="ml-3 text-base text-gray-400">API integration tools</p>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="flex-shrink-0 text-pink-400">
+                                <i class="fas fa-check"></i>
+                            </div>
+                            <p class="ml-3 text-base text-gray-400">Backend development</p>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="flex-shrink-0 text-pink-400">
+                                <i class="fas fa-check"></i>
+                            </div>
+                            <p class="ml-3 text-base text-gray-400">Priority support</p>
+                        </li>
+                    </ul>
+                    <div class="mt-8">
+                        <a href="#download" class="w-full flex items-center justify-center px-4 py-3 border border-transparent text-base font-medium rounded-md text-white bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 transition">
+                            Upgrade Now
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Enterprise Tier -->
+                <div class="relative bg-gray-800 p-8 rounded-lg border border-gray-700">
+                    <h3 class="text-lg font-medium text-white">Enterprise</h3>
+                    <p class="mt-4 text-gray-400">For large teams and organizations</p>
+                    <div class="mt-6">
+                        <span class="text-4xl font-bold text-white">$50</span>
+                        <span class="text-base font-medium text-gray-400">/month</span>
+                    </div>
+                    <ul class="mt-6 space-y-4">
+                        <li class="flex items-start">
+                            <div class="flex-shrink-0 text-pink-400">
+                                <i class="fas fa-check"></i>
+                            </div>
+                            <p class="ml-3 text-base text-gray-400">Everything in Professional</p>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="flex-shrink-0 text-pink-400">
+                                <i class="fas fa-check"></i>
+                            </div>
+                            <p class="ml-3 text-base text-gray-400">Team collaboration tools</p>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="flex-shrink-0 text-pink-400">
+                                <i class="fas fa-check"></i>
+                            </div>
+                            <p class="ml-3 text-base text-gray-400">Custom deployment options</p>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="flex-shrink-0 text-pink-400">
+                                <i class="fas fa-check"></i>
+                            </div>
+                            <p class="ml-3 text-base text-gray-400">Dedicated account manager</p>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="flex-shrink-0 text-pink-400">
+                                <i class="fas fa-check"></i>
+                            </div>
+                            <p class="ml-3 text-base text-gray-400">24/7 premium support</p>
+                        </li>
+                    </ul>
+                    <div class="mt-8">
+                        <a href="#download" class="w-full flex items-center justify-center px-4 py-3 border border-transparent text-base font-medium rounded-md text-white bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 transition">
+                            Contact Sales
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="py-12 bg-gray-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="lg:text-center">
+                <h2 class="text-base text-pink-400 font-semibold tracking-wide uppercase">Testimonials</h2>
+                <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-white sm:text-4xl">
+                    What developers are saying
+                </p>
+                <p class="mt-4 max-w-2xl text-xl text-gray-400 lg:mx-auto">
+                    Don't just take our word for it. Here's what our users say about Web Studio IDE.
+                </p>
+            </div>
+
+            <div class="mt-10 grid gap-8 lg:grid-cols-3">
+                <!-- Testimonial 1 -->
+                <div class="bg-gray-800 p-6 rounded-lg">
+                    <div class="flex items-center">
+                        <div class="flex-shrink-0">
+                            <img class="h-12 w-12 rounded-full" src="https://randomuser.me/api/portraits/women/44.jpg" alt="Sarah Johnson">
+                        </div>
+                        <div class="ml-4">
+                            <h3 class="text-lg font-medium text-white">Sarah Johnson</h3>
+                            <p class="text-pink-400">Frontend Developer</p>
+                        </div>
+                    </div>
+                    <div class="mt-4">
+                        <p class="text-gray-400">
+                            "Web Studio IDE has completely transformed my workflow. The visual design tools save me hours of CSS tweaking, and the API integration is seamless. I can't imagine going back to my old setup."
+                        </p>
+                    </div>
+                    <div class="mt-4 flex text-yellow-400">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+
+                <!-- Testimonial 2 -->
+                <div class="bg-gray-800 p-6 rounded-lg">
+                    <div class="flex items-center">
+                        <div class="flex-shrink-0">
+                            <img class="h-12 w-12 rounded-full" src="https://randomuser.me/api/portraits/men/32.jpg" alt="Michael Chen">
+                        </div>
+                        <div class="ml-4">
+                            <h3 class="text-lg font-medium text-white">Michael Chen</h3>
+                            <p class="text-pink-400">Full Stack Developer</p>
+                        </div>
+                    </div>
+                    <div class="mt-4">
+                        <p class="text-gray-400">
+                            "As a full stack developer, having all my tools in one place is a game changer. The backend support is robust, and the deployment options make my life so much easier. Worth every penny."
+                        </p>
+                    </div>
+                    <div class="mt-4 flex text-yellow-400">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                </div>
+
+                <!-- Testimonial 3 -->
+                <div class="bg-gray-800 p-6 rounded-lg">
+                    <div class="flex items-center">
+                        <div class="flex-shrink-0">
+                            <img class="h-12 w-12 rounded-full" src="https://randomuser.me/api/portraits/women/68.jpg" alt="Emma Rodriguez">
+                        </div>
+                        <div class="ml-4">
+                            <h3 class="text-lg font-medium text-white">Emma Rodriguez</h3>
+                            <p class="text-pink-400">UI/UX Designer</p>
+                        </div>
+                    </div>
+                    <div class="mt-4">
+                        <p class="text-gray-400">
+                            "I'm not a hardcore coder, but Web Studio IDE makes me feel like one. The visual tools are intuitive, and I can actually implement my designs without waiting for a developer. Highly recommend!"
+                        </p>
+                    </div>
+                    <div class="mt-4 flex text-yellow-400">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section id="download" class="py-12 bg-gradient-to-br from-gray-900 to-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="lg:text-center">
+                <h2 class="text-base text-pink-400 font-semibold tracking-wide uppercase">Ready to get started?</h2>
+                <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-white sm:text-4xl">
+                    Download Web Studio IDE today
+                </p>
+                <p class="mt-4
+<p style="border-radius: 8px; text-align: center; font-size: 12px; color: #fff; margin-top: 16px;position: fixed; left: 8px; bottom: 8px; z-index: 10; background: rgba(0, 0, 0, 0.8); padding: 4px 8px;">Made with <img src="https://deepsite.hf.co/logo.svg" alt="DeepSite Logo" style="width: 16px; height: 16px; vertical-align: middle;display:inline-block;margin-right:3px;filter:brightness(0) invert(1);"><a href="https://deepsite.hf.co" style="color: #fff;text-decoration: underline;" target="_blank" >DeepSite</a> - 🧬 <a href="https://deepsite.hf.co?remix=Tiictor/web-studio" style="color: #fff;text-decoration: underline;" target="_blank" >Remix</a></p></body>
 </html>
